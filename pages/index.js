@@ -1,242 +1,237 @@
-import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
+import Head from "next/head";
+import { Scatter } from "recharts";
+import Scatte from "../components/recharts/Scatte";
+import AreChart from "../components/recharts/AreChart";
 
-export default function Home({ isConnected }) {
+import LineH from "../components/recharts/LineH";
+export default function Home() {
   return (
-    <div className="container">
+    <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Emarpe </title>
       </Head>
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
+      <div className="content-wrapper">
+        <div class="bg-sky-100 aspect-square">
+          <div className="content-header">
+            <div className="container-fluid">
+              <div className="content-header">
+                <div className="container-fluid">
+                  <div className="row mb-2">
+                    <div className="col-sm-6"></div>
+                  </div>
+                </div>
+              </div>
 
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
+              <div className="flex flex-wrap">
+                <div className="w-full md:w-1/2 xl:w-1/3 p-6">
+                  <div className="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
+                    <div className="flex flex-row items-center">
+                      <div className="flex-shrink pr-4">
+                        <div className="rounded-full p-5 bg-green-600">
+                          <i class="bi bi-people-fill"></i>
+                        </div>
+                      </div>
+                      <div className="flex-1 text-right md:text-center">
+                        <h2 className="font-bold uppercase text-gray-600">
+                          Total Revenue
+                        </h2>
+                        <p className="font-bold text-3xl">
+                          $3249{" "}
+                          <span className="text-green-500">
+                            <i class="bi bi-people-fill"></i>
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 xl:w-1/3 p-6">
+                  <div className="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+                    <div className="flex flex-row items-center">
+                      <div className="flex-shrink pr-4">
+                        <div className="rounded-full p-5 bg-pink-600">
+                          <i class="bi bi-person-square bi-2x bi-inverse"></i>
+                        </div>
+                      </div>
+                      <div className="flex-1 text-right md:text-center">
+                        <h2 className="font-bold uppercase text-gray-600">
+                          Total Users
+                        </h2>
+                        <p className="font-bold text-3xl">
+                          249{" "}
+                          <span className="text-pink-500">
+                            <i className="fas fa-exchange-alt"></i>
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 xl:w-1/3 p-6">
+                  <div className="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
+                    <div className="flex flex-row items-center">
+                      <div className="flex-shrink pr-4">
+                        <div className="rounded-full p-5 bg-yellow-600">
+                          <i class="bi bi-wallet-fill"></i>
+                        </div>
+                      </div>
+                      <div className="flex-1 text-right md:text-center">
+                        <h2 className="font-bold uppercase text-gray-600">
+                          New Users
+                        </h2>
+                        <p className="font-bold text-3xl">
+                          2{" "}
+                          <span className="text-yellow-600">
+                            <i className="fas fa-caret-up"></i>
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 xl:w-1/3 p-6">
+                  <div className="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
+                    <div className="flex flex-row items-center">
+                      <div className="flex-shrink pr-4">
+                        <div className="rounded-full p-5 bg-blue-600">
+                          <i class="bi bi-subtract"></i>
+                        </div>
+                      </div>
+                      <div className="flex-1 text-right md:text-center">
+                        <h2 className="font-bold uppercase text-gray-600">
+                          Server Uptime
+                        </h2>
+                        <p className="font-bold text-3xl">152 days</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 xl:w-1/3 p-6">
+                  <div className="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
+                    <div className="flex flex-row items-center">
+                      <div className="flex-shrink pr-4">
+                        <div className="rounded-full p-5 bg-indigo-600">
+                          <i class="bi bi-people"></i>
+                        </div>
+                      </div>
+                      <div className="flex-1 text-right md:text-center">
+                        <h2 className="font-bold uppercase text-gray-600">
+                          To Do List
+                        </h2>
+                        <p className="font-bold text-3xl">7 tasks</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full md:w-1/2 xl:w-1/3 p-6">
+                  <div className="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
+                    <div className="flex flex-row items-center">
+                      <div className="flex-shrink pr-4">
+                        <div className="rounded-full p-5 bg-red-600">
+                          <i class="bi bi-person"></i>
+                        </div>
+                      </div>
+                      <div className="flex-1 text-right md:text-center">
+                        <h2 className="font-bold uppercase text-gray-600">
+                          Issues
+                        </h2>
+                        <p className="font-bold text-3xl">
+                          3{" "}
+                          <span className="text-red-500">
+                            <i className="fas fa-caret-up"></i>
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+              <div className="flex flex-row flex-wrap flex-grow mt-2">
+                <div className="w-full md:w-2/3 xl:w-2/4 p-6">
+                  <div className="bg-white border-transparent rounded-lg shadow-xl">
+                    <div className="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                      <h className="font-bold uppercase text-gray-600">Graph</h>
+                    </div>
+                    <div className="p-6">
+                      <Scatte />
+                    </div>
+                  </div>
+                </div>
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+                <div className="w-full md:w-2/3 xl:w-2/4 p-6">
+                  <div className="bg-white border-transparent rounded-lg shadow-xl">
+                    <div className="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                      <h2 className="font-bold uppercase text-gray-600">
+                        Graph
+                      </h2>
+                    </div>
+                    <div className="p-6">
+                      <AreChart />
+                    </div>
+                  </div>
+                </div>
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+                <div
+                  className="
+                w-full md:w-2/3 xl:w-2/4 p-6"
+                >
+                  <div className="bg-white border-transparent rounded-lg shadow-xl">
+                    <div className="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                      <h2 className="font-bold uppercase text-gray-600">
+                        Graph
+                      </h2>
+                    </div>
+                    <div className="p-6">
+                      <LineH />
+                    </div>
+                  </div>
+                </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+                <div className="w-full md:w-2/3 xl:w-2/4 p-6">
+                  <div className="bg-white border-transparent rounded-lg shadow-xl">
+                    <div className="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                      <h5 className="font-bold uppercase text-gray-600">
+                        Graph
+                      </h5>
+                    </div>
+                    <div className="p-6">
+                      <LineH />
+                    </div>
+                  </div>
+                </div>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+                <div className="w-full md:w-2/3 xl:w-2/4 p-6">
+                  <div className="bg-white border-transparent rounded-lg shadow-xl">
+                    <div className="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                      <h5 className="font-bold uppercase text-gray-600">
+                        Graph
+                      </h5>
+                    </div>
+                    <div className="p-6">
+                      <LineH />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full md:w-2/3 xl:w-2/4 p-6">
+                  <div className="bg-white border-transparent rounded-lg shadow-xl">
+                    <div className="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                      <h5 className="font-bold uppercase text-gray-600">
+                        Graph
+                      </h5>
+                    </div>
+                    <div className="p-6">
+                      <LineH />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .subtitle {
-          font-size: 2rem;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
-}
-
-export async function getServerSideProps(context) {
-  try {
-    // client.db() will be the default database passed in the MONGODB_URI
-    // You can change the database by calling the client.db() function and specifying a database like:
-    // const db = client.db("myDatabase");
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
-    await clientPromise
-    return {
-      props: { isConnected: true },
-    }
-  } catch (e) {
-    console.error(e)
-    return {
-      props: { isConnected: false },
-    }
-  }
+      </div>
+    </>
+  );
 }
